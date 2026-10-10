@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>VPN Engine</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <div id="connectionScreen" class="auth-shell">
+    <section class="auth-box auth-content">
+      <h1>VPN Engine</h1>
+      <p id="connectionMessage" role="status">Connecting to your server…</p>
+      <button id="connectionRetry" class="btn primary hidden" type="button">Retry</button>
+    </section>
+  </div>
+  <div id="authScreen" class="auth-shell hidden">
+    <div class="auth-content">
+      <div class="brand brand-large"><div class="brand-icon">V<span>●</span></div><div><strong>VPN Engine</strong></div></div>
+      <div id="authMessage" class="note hidden" role="status"></div>
+      <div id="authHTTPWarning" class="note notice-warning hidden">This connection uses HTTP and is not encrypted. Passwords and private VPN profiles may be exposed. Use HTTPS whenever possible.</div>
+      <button id="authRetry" class="btn small ghost hidden" type="button">Retry connection</button>
+      <section class="auth-box" id="setupBox">
+        <div class="step-tag">INITIAL SETUP</div>
+        <h1>Admin setup</h1>
+        <p>The management engine is installed. VPN servers can be installed separately after you sign in.</p>
+        <form id="setupForm" autocomplete="off">
+          <p class="form-help">Set your administrator credentials now. Until an account is created, anyone with access to this address can claim the panel. Use HTTPS whenever possible.</p>
+          <label>Admin username<input name="username" value="admin" pattern="[A-Za-z][A-Za-z0-9_.-]{0,31}" required></label>
+          <label>Admin password<input name="password" type="password" minlength="8" maxlength="256" autocomplete="new-password" required></label>
+          <button class="btn primary full" type="submit">Create admin account <span>→</span></button>
+        </form>
+      </section>
+      <section class="auth-box hidden" id="loginBox">
+        <div class="step-tag">ADMIN ACCESS</div>
+        <h1>Admin sign in</h1>
+        <p>Sign in to manage installed VPN services and their users.</p>
+        <form id="loginForm">
+          <label>Username<input name="username" autocomplete="username" required></label>
+          <label>Password<input name="password" type="password" autocomplete="current-password" required></label>
+          <button class="btn primary full" type="submit">Sign in <span>→</span></button>
+        </form>
+      </section>
+      
+    </div>
+  </div>
+  <div id="appShell" class="shell hidden">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-icon">V<span>●</span></div><div><strong>VPN Engine</strong></div></div>
+      <nav id="nav" class="nav">
+        <button data-page="overview" class="nav-item selected"><span class="nav-icon">◈</span> Overview</button>
+        <button data-page="services" class="nav-item"><span class="nav-icon">▦</span> VPN services</button>
+        <button data-page="users" class="nav-item"><span class="nav-icon">◎</span> Users</button>
+        <button data-page="settings" class="nav-item"><span class="nav-icon">⚙</span> Settings</button>
+      </nav>
+      <div class="sidebar-bottom"><div class="server-dot" id="sidebarHealth"><span class="pulse"></span><span>Connecting…</span></div><div class="sidebar-version" id="sidebarVersion">VPN Engine</div></div>
+    </aside>
+    <div class="main-area">
+      <header class="topbar"><div class="topbar-left"><div class="mobile-brand">VPN Engine</div><div class="crumb" id="breadcrumb">Overview</div></div><div class="topbar-right"><span class="chip" id="engineHealth" role="status"><span class="pulse"></span><span>CONNECTING</span></span><span class="account-pill" id="accountName">admin</span><button id="logoutBtn" class="btn small ghost">Log out</button></div></header>
+      <div class="content status-area">
+        <div class="status-row"><span id="lastChecked" class="small-text">Last checked: not yet</span><button id="refreshBtn" class="btn small ghost" type="button">Refresh</button></div>
+        <div id="appError" class="note notice-warning hidden" role="status"><span id="appErrorMessage"></span><button id="appRetry" class="btn small ghost hidden" type="button">Retry</button></div>
+        <div id="httpWarning" class="note notice-warning hidden">This connection uses HTTP and is not encrypted. Passwords and private VPN profiles may be exposed. Use HTTPS whenever possible.</div>
+        <div id="runtimeWarnings" class="hidden" role="status"></div>
+      </div>
+      <main id="page" class="content"></main>
+    </div>
+  </div>
+  <div id="toast" class="toast hidden" role="status"></div>
+  <div id="modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card"><div class="modal-heading"><h2 id="modalTitle"></h2><button class="close-btn" id="modalClose" aria-label="Close">✕</button></div><div id="modalContent"></div></div>
+  </div>
+</body>
+</html>

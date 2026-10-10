@@ -1,0 +1,81 @@
+name: Bug report
+description: Report a reproducible VPN Engine problem
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Describe the problem and what you expected instead.
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: VPN Engine version
+      placeholder: "v1.1.2"
+    validations:
+      required: true
+
+  - type: input
+    id: ubuntu
+    attributes:
+      label: Ubuntu version
+      placeholder: "24.04.1 LTS"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: architecture
+    attributes:
+      label: Architecture
+      options:
+        - amd64
+        - arm64
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected area
+      options:
+        - Installer / update
+        - HTTPS / certificate renewal
+        - Admin panel
+        - WireGuard
+        - OpenVPN
+        - IKEv2 / IPsec
+        - Uninstaller
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs
+      description: Remove passwords, private keys, session cookies and other secrets before posting.
+      render: shell
+
+  - type: checkboxes
+    id: secrets
+    attributes:
+      label: Sensitive data
+      options:
+        - label: I removed passwords, private keys, session cookies and other secrets from this report.
+          required: true

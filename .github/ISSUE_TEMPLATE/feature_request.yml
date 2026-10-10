@@ -1,0 +1,43 @@
+name: Feature request
+description: Suggest a concrete VPN Engine change
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or use case
+      description: What are you trying to do that VPN Engine does not handle well today?
+    validations:
+      required: true
+
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Proposed behavior
+      description: Describe the change you want.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected area
+      options:
+        - Installer / update
+        - HTTPS / certificate renewal
+        - Admin panel
+        - WireGuard
+        - OpenVPN
+        - IKEv2 / IPsec
+        - Uninstaller
+        - Documentation
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Extra context
+      description: Add examples, screenshots or constraints if they change the request.
